@@ -74,10 +74,13 @@
       height: 16px; width: 16px;
       vertical-align: middle;
     }
+    [v-cloak] {
+      display: none;
+    }
   </style>
 </head>
 <body>
-  <div id="root">
+  <div id="root" v-cloak>
 
   <header>
       <h1>{{title}}</h1>
