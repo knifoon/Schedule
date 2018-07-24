@@ -94,17 +94,17 @@
         <li><h2>Week Four</h2></li>
       </div>
       <div v-for="task in sort" v-if="task !== null" :key="task.description" class="task" v-bind:style="getWidth(task.duration)">
-        <span>{{task.description}}</span> <i v-if="task.status !== null" :data-feather="icon[task.status]"></i>
+        <span>{{task.description}}</span> <i v-if="task.status !== null" :data-feather="icon[task.status].icon" :color="icon[task.status].color"></i>
       </div>
       <div class="taskGap" v-else></div>
     </div>
     <footer>
       <a href="https://patreon.com/knifoon">Patreon</a>
       <div class="legend">
-      <li><i data-feather='check-circle'></i> Complete</li>
-      <li><i data-feather='clock'></i> In Progress</li>
-      <li><i data-feather='pause-circle'></i> On Hold</li>
-      <li><i data-feather='x-circle'></i> Cancelled</li>
+      <li><i :data-feather='icon.complete.icon' :color='icon.complete.color':color='icon.complete.color'></i> Complete</li>
+      <li><i :data-feather='icon.inprogress.icon':color='icon.inprogress.color'></i> In Progress</li>
+      <li><i :data-feather='icon.onhold.icon':color='icon.onhold.color'></i> On Hold</li>
+      <li><i :data-feather='icon.cancelled.icon':color='icon.cancelled.color'></i> Cancelled</li>
     </div>
     </footer>
   </div>

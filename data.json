@@ -2,10 +2,10 @@ var json = {
   title: "PATREON SCHEDULE",
   subtitle: "JULY 2018",
   icon:{
-    'inprogress': 'clock',
-    'complete': 'check-circle',
-    'onhold': 'pause-circle',
-    'cancelled': 'x-circle'
+    'inprogress': {icon:'clock',color:'currentColor'},
+    'complete': {icon: 'check-circle',color:'#7FB147'},
+    'onhold': {icon: 'pause-circle',color:'#D59439'},
+    'cancelled': {icon: 'x-circle',color:'#9E4F4F'}
   },
   tasks:[
   {
