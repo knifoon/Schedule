@@ -1,0 +1,217 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,500,700" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-family: Roboto;
+      background: #f1f2f3;
+      font-weight: 500;
+      color: #1C4059;
+    }
+    header {
+      text-align: center;
+    }
+    .heading {
+      margin-bottom: 10px;
+      padding: 0;
+      white-space: nowrap;
+    }
+    h1,h2 {
+      margin: 0;
+    }
+    h2{
+      font-weight: 300;
+    }
+    li {
+      text-align: left;
+      list-style: none;
+      width: 25%;
+      display: inline-block;
+    }
+    #root{
+      width: 800px;
+      text-align: left;
+      margin: 50px auto;
+    }
+    .schedule{
+      width: 100%;
+      margin: 20px 0;
+    }
+    .task{
+      display: inline-block;
+      background: #fff;
+      padding: 10px;
+      margin: 0 5px 5px 0;
+      border-bottom: 2px solid #E7ECF0;
+    }
+    .taskGap {
+      display: inline-block;
+      padding: 10px;
+      margin: 0 5px 5px 0;
+      width: calc(25% - 5px );
+    }
+    .feather {
+      height: 20px; width: 20px;
+    }
+    .schedule .feather {
+      float: right;
+    }
+    .legend {
+      float: right;
+    }
+    .legend li {
+      display: block;
+      white-space: nowrap;
+      margin: 5px;
+    }
+    .legend .feather {
+      height: 16px; width: 16px;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+
+  <header>
+      <h1>{{title}}</h1>
+      <h2>{{subtitle}}</h2>
+    </header>
+    <div class="schedule">
+      <div class="heading">
+        <li><h2>Week One</h2></li>
+        <li><h2>Week Two</h2></li>
+        <li><h2>Week Three</h2></li>
+        <li><h2>Week Four</h2></li>
+      </div>
+      <div v-for="task in sort" v-if="task !== null" :key="task.description" class="task" v-bind:style="getWidth(task.duration)">
+        <span>{{task.description}}</span> <i v-if="task.status !== null" :data-feather="icon[task.status]"></i>
+      </div>
+      <div class="taskGap" v-else></div>
+    </div>
+    <footer>
+      <a href="https://patreon.com/knifoon">Patreon</a>
+      <div class="legend">
+      <li><i data-feather='check-circle'></i> Complete</li>
+      <li><i data-feather='clock'></i> In Progress</li>
+      <li><i data-feather='pause-circle'></i> On Hold</li>
+      <li><i data-feather='x-circle'></i> Cancelled</li>
+    </div>
+    </footer>
+  </div>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script>
+    new Vue({
+      el: '#root',
+      data: {
+        title: "PATREON SCHEDULE",
+        subtitle: "JULY 2018",
+        icon:{
+          'inprogress': 'clock',
+          'complete': 'check-circle',
+          'onhold': 'pause-circle',
+          'cancelled': 'x-circle'
+        },
+        tasks:[
+          {
+             description: "June Rewards",
+             status: 'complete',
+             start: 1,
+             duration: 1
+        },
+          {
+             description: "Poll Requests",
+             status: 'complete',
+             start: 1,
+             duration: 1
+        },
+          {
+             description: "Self Assigned Art Project",
+             status: 'complete',
+             start: 1,
+             duration: 2
+        },
+          {
+             description: "Doodles",
+             status: 'inprogress',
+             start: 1,
+             duration: 4
+        },
+          {
+             description: "Patreon Poll",
+             status: 'complete',
+             start: 2,
+             duration: 1
+        },
+        {
+          description:"Patreon Voted Art",
+          status: 'complete',
+          start: 3,
+          duration: 2
+        },
+        {
+          description:"August Schedule",
+          status: 'onhold',
+          start: 4,
+          duration: 1
+        }
+        ]
+  },
+  methods:{
+    getWidth: function(n){
+      let css = {width: 'calc(25% * '+n+' - 5px )'}
+      return css
+    },
+    getWeek: function(n){
+      return this.tasks.filter(function(task) {
+        return task.start == n
+      })
+    },
+    byDuration: function(t){
+      return t.sort((a,b) => a.duration-b.duration)
+    }
+  },
+  computed: {
+    sort: function(){
+      let w =['test',
+              this.byDuration(this.getWeek(1)),
+              this.byDuration(this.getWeek(2)),
+              this.byDuration(this.getWeek(3)),
+              this.byDuration(this.getWeek(4))]
+      let output = []
+      output.push(w[1][0])
+      let ns = w[1][0].start + w[1][0].duration
+      w[1].splice(0,1)
+      let check = 5
+      for (var i = 0; i < this.tasks.length-1; i++) {
+        if (ns > 4) {ns = ns - 4}
+        if (check <= 0) break
+        if (w[ns][0] == undefined) {
+          i--
+          output.push(null)
+          if(ns>4){ns= ns - 4 + 1}else{ns++}
+          check--
+        } else {
+        output.push(w[ns][0])
+        w[ns].splice(0,1)
+        ns = output[output.length-1].start + output[output.length-1].duration
+      }
+    }
+      return output
+    }
+  },
+  created () {
+            document.title = this.title + ' | ' + this.subtitle;
+        }
+  })
+  feather.replace()
+</script>
+</body>
+</html>
