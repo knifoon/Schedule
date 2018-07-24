@@ -110,63 +110,11 @@
   </div>
     <script src="https://unpkg.com/feather-icons"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="data.json"></script>
     <script>
     new Vue({
       el: '#root',
-      data: {
-        title: "PATREON SCHEDULE",
-        subtitle: "JULY 2018",
-        icon:{
-          'inprogress': 'clock',
-          'complete': 'check-circle',
-          'onhold': 'pause-circle',
-          'cancelled': 'x-circle'
-        },
-        tasks:[
-          {
-             description: "June Rewards",
-             status: 'complete',
-             start: 1,
-             duration: 1
-        },
-          {
-             description: "Poll Requests",
-             status: 'complete',
-             start: 1,
-             duration: 1
-        },
-          {
-             description: "Self Assigned Art Project",
-             status: 'complete',
-             start: 1,
-             duration: 2
-        },
-          {
-             description: "Doodles",
-             status: 'inprogress',
-             start: 1,
-             duration: 4
-        },
-          {
-             description: "Patreon Poll",
-             status: 'complete',
-             start: 2,
-             duration: 1
-        },
-        {
-          description:"Patreon Voted Art",
-          status: 'complete',
-          start: 3,
-          duration: 2
-        },
-        {
-          description:"August Schedule",
-          status: 'onhold',
-          start: 4,
-          duration: 1
-        }
-        ]
-  },
+      data: json,
   methods:{
     getWidth: function(n){
       let css = {width: 'calc(25% * '+n+' - 5px )'}
