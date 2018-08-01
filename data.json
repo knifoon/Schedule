@@ -16,7 +16,7 @@ var json = {
 },
 {
    description: "Poll Requests",
-   status: 'onhold',
+   status: 'inprogress',
    start: 1,
    duration: 1
 },
