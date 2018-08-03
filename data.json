@@ -10,7 +10,7 @@ var json = {
   tasks:[
   {
    description: "July Rewards",
-   status: 'inprogress',
+   status: 'complete',
    start: 1,
    duration: 1
 },
