@@ -1,6 +1,6 @@
 var json = {
   title: "PATREON SCHEDULE",
-  subtitle: "September 2018",
+  subtitle: "June 2022",
   icon:{
     'inprogress': {icon:'clock',color:'currentColor'},
     'complete': {icon: 'check-circle',color:'#7FB147'},
@@ -9,16 +9,10 @@ var json = {
   },
   tasks:[
   {
-   description: "August Rewards",
-   status: 'onhold',
-   start: 1,
-   duration: 1
-},
-{
-   description: "Poll Requests",
+   description: "Patreon Update",
    status: 'inprogress',
    start: 1,
-   duration: 1
+   duration: 4
 },
 {
    description: "Self Assigned Art Project",
@@ -33,19 +27,7 @@ var json = {
    duration: 4
 },
 {
-   description: "Patreon Poll",
-   status: null,
-   start: 2,
-   duration: 1
-},
-{
-description:"Patreon Voted Art",
-status: null,
-start: 3,
-duration: 2
-},
-{
-description:"October Schedule",
+description:"July Schedule",
 status: null,
 start: 4,
 duration: 1
