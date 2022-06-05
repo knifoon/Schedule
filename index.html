@@ -116,7 +116,7 @@
     <script src="https://unpkg.com/vue@3"></script>
     <script src="data.json"></script>
     <script>
-    new Vue({
+    const app =  Vue.createApp({
       el: '#root',
       data: json,
   methods:{
@@ -165,7 +165,7 @@
   created () {
             document.title = this.title + ' | ' + this.subtitle;
         }
-  })
+  });
   feather.replace()
 </script>
 </body>
